@@ -88,20 +88,27 @@ class Cjudge
 public:
 	Cjudge()
 	{
-		score_plus = 0;
 		combo = 0;
 		judge_num = 0;
+		draw_time = 0;
+		combo_cut_pos_y = 0;
+		is_plus_score = false;
+		is_combo = false;
+		is_draw_active = false;
 	};
 
 	void draw()//判定してから書く
 	{
-		if (judge_num == JUDGE::EXCELENT)
-			drawFillBox(-50,-50,100,100,Color::blue);
-		if (judge_num == JUDGE::GOOD)
-			drawFillBox(-50, -50, 100, 100, Color::red);
-		if (judge_num == JUDGE::BAD)
-			drawFillBox(-50, -50, 100, 100, Color::yellow);
-
+		if (is_draw_active == true && draw_time < 10)
+		{
+			++draw_time;
+			if (judge_num == JUDGE::EXCELENT)
+				drawFillBox(-50, -50, 100, 100, Color::blue);
+			if (judge_num == JUDGE::GOOD)
+				drawFillBox(-50, -50, 100, 100, Color::red);
+			if (judge_num == JUDGE::BAD)
+				drawFillBox(-50, -50, 100, 100, Color::yellow);
+		}
 
 	}
 
@@ -117,19 +124,34 @@ public:
 			judge_num = JUDGE::GOOD;
 		}
 		else judge_num= JUDGE::BAD;
-
+		is_draw_active = true;
 	}
 	int Score(int _score)
 	{
-		score_plus = combo * 10;
-
-		return _score + score_plus;
+		if (is_plus_score == false)
+		{
+			_score =  _score + (combo * 10 + 10);
+			is_plus_score = true;
+		}
+		return _score;
 	}
 	int Combo(int _combo)
 	{
-		combo = _combo + 1;
+		if (is_combo == false)
+		{
+			combo = _combo + 1;
+			is_combo = true;
+		}
 		return combo;
 	}
+
+	int Combo_cut()
+	{
+		combo = 0;
+		return combo;
+	}
+
+
 private:
 	enum JUDGE  // ジャスト判定
 	{
@@ -137,10 +159,14 @@ private:
 		GOOD,
 		EXCELENT
 	};
-	int score_plus;
+
 	int combo;
 	int draw_time;
-	int judge_num;;
+	int judge_num;
+	int combo_cut_pos_y;
+	bool is_plus_score;
+	bool is_combo;
+	
 	bool is_draw_active;
 };
 float lastFrameTime = clock();
@@ -150,9 +176,12 @@ int main()
 {
 	CApp::get();
 
-
+	Font font("res/meiryo.ttc");
 	Media sio("res/SIO.wav");
 	int pos_x[5] = { -200, -100, 0, 100, 200 };
+
+	int score = 0;
+	int combo = 0;
 	bool is_hit[BULLET_MAX];
 	for (int i = 0; i < BULLET_MAX; ++i)
 	{
@@ -172,7 +201,7 @@ int main()
 	};
 	Vec2f icon_size = Vec2f(15.5f,6.25f);
 	Cnode Note[BULLET_MAX]; // ノートを29個分生成
-	Cjudge judge = Cjudge();
+	Cjudge judge[BULLET_MAX];
 	float geter_icon_pos_y[BULLET_MAX];
 	for (int i = 0; i < BULLET_MAX; ++i)
 	{
@@ -184,11 +213,17 @@ int main()
 	{
 		temp_flag[i] = false;
 	}
+	font.size(100);
 	while (CApp::get().isOpen()) 
 	{
 		CApp::get().begin();
 		deltaTime = clock() - lastFrameTime;  // 移動用デルタタイム
 		lastFrameTime = clock();
+
+		std::string SCORE = std::to_string(combo);
+		font.draw(SCORE, Vec2f(0,0), Color::blue);
+
+
 
 		for (int i = 0; i < 5; ++i)
 		{
@@ -227,9 +262,17 @@ int main()
 			if (temp_flag[i] == true)
 			{
 				Note[i].Is_dead();
-				judge.Is_draw_active(geter_icon_pos_y[i]);
-				judge.draw();
+				judge[i].Is_draw_active(geter_icon_pos_y[i]);
+				judge[i].draw();
+				combo = judge[i].Combo(combo);
+				score = judge[i].Score(score);
 			}
+
+			if (temp_flag[i] == false && geter_icon_pos_y[i] < -300)
+			{
+				combo = judge[i].Combo_cut();
+			}
+
 		}
     CApp::get().end();
   }
