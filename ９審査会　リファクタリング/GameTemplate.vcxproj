@@ -11,6 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\C_App.h" />
+    <ClInclude Include="src\C_Judge.h" />
+    <ClInclude Include="src\C_Note.h" />
+    <ClInclude Include="src\C_Deltatime.h" />
+    <ClInclude Include="src\Inside.h" />
     <ClInclude Include="src\lib\appEnv.hpp" />
     <ClInclude Include="src\lib\audio.hpp" />
     <ClInclude Include="src\lib\camera2D.hpp" />
@@ -37,6 +42,9 @@
     <ClInclude Include="src\lib\wav.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\C_App.cpp" />
+    <ClCompile Include="src\C_deltatime.cpp" />
+    <ClCompile Include="src\C_Judge.cpp" />
     <ClCompile Include="src\lib\appEnv.cpp" />
     <ClCompile Include="src\lib\audio.cpp" />
     <ClCompile Include="src\lib\camera2D.cpp" />
@@ -58,6 +66,8 @@
     <ClCompile Include="src\lib\utils.cpp" />
     <ClCompile Include="src\lib\wav.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\C_Note.cpp" />
+    <ClCompile Include="src\Inside.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9EFD6A36-08E8-485E-B135-5B6519C0F6B1}</ProjectGuid>
