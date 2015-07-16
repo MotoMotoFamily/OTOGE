@@ -17,8 +17,6 @@
 #include "os.hpp"
 
 
-
-
 // マウスボタンの省略名を定義
 enum Mouse {
   LEFT  = GLFW_MOUSE_BUTTON_LEFT,
