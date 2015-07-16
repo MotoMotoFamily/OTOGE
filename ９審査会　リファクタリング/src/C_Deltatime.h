@@ -3,16 +3,14 @@
 
 class Deltatime
 {
+	
+public:
 	Deltatime()
 	{
-		 lastFrameTime = clock();
-		 deltaTime = 0.0f;
-
-
-
+		lastFrameTime = clock();
+		deltaTime = 0.0f;
 	}
 
-public:
 	float Get();
 
 

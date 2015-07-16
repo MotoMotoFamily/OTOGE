@@ -32,6 +32,12 @@
 	}
 
 	//ノートの座標をほかの関数に渡す
+	float Cnote::Get_note_pos_x()
+	{
+		return note.pos_x;
+	}
+
+	//ノートの座標をほかの関数に渡す
 	float Cnote::Get_note_pos_y()
 	{
 		return note.pos_y;

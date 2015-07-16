@@ -18,8 +18,9 @@ public:
 
 		void Move(float _speed);
 
-		float Get_note_pos_y();
+		float Get_note_pos_x();
 
+		float Get_note_pos_y();
 private:
 	struct NOTE        //　ノートアイコン情報 
 	{
