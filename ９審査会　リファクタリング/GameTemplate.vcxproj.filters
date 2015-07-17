@@ -183,11 +183,11 @@
     <ClCompile Include="src\C_App.cpp">
       <Filter>C_App</Filter>
     </ClCompile>
-    <ClCompile Include="src\C_deltatime.cpp">
-      <Filter>C_Deltatime</Filter>
-    </ClCompile>
     <ClCompile Include="src\C_Judge.cpp">
       <Filter>C_Judge</Filter>
+    </ClCompile>
+    <ClCompile Include="src\C_Deltatime.cpp">
+      <Filter>C_Deltatime</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

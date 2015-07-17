@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\C_App.cpp" />
-    <ClCompile Include="src\C_deltatime.cpp" />
+    <ClCompile Include="src\C_Deltatime.cpp" />
     <ClCompile Include="src\C_Judge.cpp" />
     <ClCompile Include="src\lib\appEnv.cpp" />
     <ClCompile Include="src\lib\audio.cpp" />
