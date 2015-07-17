@@ -1,4 +1,8 @@
 #include "C_Judge.h"
+#include "C_App.h"
+
+const GamePad& Cjudge::pad = CApp::get().gamePad(0);
+
 
 void Cjudge::Update()
 {

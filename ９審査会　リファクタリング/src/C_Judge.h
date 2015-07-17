@@ -11,6 +11,9 @@
 #define EXCELENT_RANGE (15)
 #define GOOD_RANGE (20)
 #define PLAYER_Y (-200)
+#define PLAYER_WIDTH (20)
+
+
 enum JUDGEMENT_TYPE  // ƒWƒƒƒXƒg”»’è
 {
 	NONE = -1,
@@ -45,6 +48,8 @@ public:
 		is_draw_active(false)
 	{
 
+
+
 	};
 
 	void Update();
@@ -63,11 +68,10 @@ public:
 
 	}
 
+	// 0”Ô–Ú‚ÌGamePad‚ðŽæ“¾
+	static const GamePad& pad;
 
 private:
-
-
-	
 
 	Vec2f draw_pos;
 	Vec2f draw_size;

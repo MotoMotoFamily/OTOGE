@@ -22,6 +22,9 @@
     <Filter Include="C_Judge">
       <UniqueIdentifier>{973a6475-2669-4145-8dc2-e7b70ce2d633}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game_manager">
+      <UniqueIdentifier>{d84c552e-e353-4ac1-9a5c-fb5477d79558}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\appEnv.hpp">
@@ -111,6 +114,9 @@
     <ClInclude Include="src\C_Judge.h">
       <Filter>C_Judge</Filter>
     </ClInclude>
+    <ClInclude Include="src\Game_manager.h">
+      <Filter>Game_manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\lib\appEnv.cpp">
@@ -188,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="src\C_Deltatime.cpp">
       <Filter>C_Deltatime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game_manager.cpp">
+      <Filter>Game_manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

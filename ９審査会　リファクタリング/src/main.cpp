@@ -21,7 +21,7 @@ int main() {
 	Font font("res/meiryo.ttc");
 	font.size(50);
 	Media sio_song("res/SIO.wav");
-	Media hit_se("res/dan.wav");
+	
 	Cnote Note[NOTE_MAX]; // ノートを29個分生成
 	Cjudge judge[NOTE_MAX];
 	Deltatime get_deltatime;
@@ -48,14 +48,7 @@ int main() {
 	};
 	Vec2f note_size = Vec2f(15.5f, 6.25f);
 
-	float get_note_pos_x[NOTE_MAX];
-	float get_note_pos_y[NOTE_MAX];
-	for (int i = 0; i < NOTE_MAX; ++i)
-	{
-		get_note_pos_x[i] = 0;
-		get_note_pos_y[i] = 0;
-	}
-
+	
 	bool is_judge[NOTE_MAX];
 	for (int i = 0; i < NOTE_MAX; ++i)
 	{
@@ -100,23 +93,15 @@ int main() {
 		Note[i].Move(deltatime * deltaTime_content);  // 移動処理　
 	}
 
-	//ノートから逆に座標をもらい、
-	//判定するための変数にいれる。
-	for (int i = 0; i < NOTE_MAX; ++i)
-	{
-		get_note_pos_x[i] = Note[i].Get_note_pos_x();
-		get_note_pos_y[i] = Note[i].Get_note_pos_y();
-	}
-
 	//Aキーを押したなら、判定
 	if (CApp::get().isPushKey('A'))
 	{
-		hit_se.play();
-		hit_se.gain(2);
+		//hit_se.play();
+		//hit_se.gain(2);
 
 		for (int i = 0; i < NOTE_MAX; ++i)
 		{ // 範囲内かつ、判定用フラグがfalseなら
-			if (!is_judge[i] && judge[i].Judgging(get_note_pos_y[i]) != JUDGEMENT_TYPE::NONE) 
+			if (!is_judge[i] && judge[i].Judgging(Note[i].Get_note_pos_y()) != JUDGEMENT_TYPE::NONE) 
 			{
 				judge[i].Set_draw_active(true);
 				is_judge[i] = true;//判定用のフラグをtrueにする
@@ -127,97 +112,9 @@ int main() {
 
 	if (gamepad_num > 0) 
 	{
-		// 0番目のGamePadを取得
-		const GamePad& pad = CApp::get().gamePad(0);
+	
 
-		// GamePadのボタン数
-		int button_num = pad.buttons();
-
-		    if (pad.isPushButton(15))
-		    {
-				hit_se.play();
-				hit_se.gain(2);
-				for (int i = 0; i < NOTE_MAX; ++i)
-				{ // 範囲内かつ、判定用フラグがfalseなら
-					if (!is_judge[i] && Is_Inside(get_note_pos_y[i], ICON_CHECKLINE_MAX, ICON_CHECKLINE_MIN) 
-						             && Is_Inside(get_note_pos_x[i], -240, -260))
-					{
-						is_judge[i] = true;//判定用のフラグをtrueにする
-						break;
-					}
-				}
-		    }
-
-			if ( pad.isPushButton(12))
-			{
-				hit_se.play();
-				hit_se.gain(2);
-				for (int i = 0; i < NOTE_MAX; ++i)
-				{ // 範囲内かつ、判定用フラグがfalseなら
-					if (!is_judge[i] && Is_Inside(get_note_pos_y[i], ICON_CHECKLINE_MAX, ICON_CHECKLINE_MIN)
-						             && Is_Inside(get_note_pos_x[i], -140, -160))
-					{
-						is_judge[i] = true;//判定用のフラグをtrueにする
-						break;
-					}
-				}
-			}
-			if ( pad.isPushButton(13))
-			{
-				hit_se.play();
-				hit_se.gain(2);
-				for (int i = 0; i < NOTE_MAX; ++i)
-				{ // 範囲内かつ、判定用フラグがfalseなら
-					if (!is_judge[i] && Is_Inside(get_note_pos_y[i], ICON_CHECKLINE_MAX, ICON_CHECKLINE_MIN)
-						             && Is_Inside(get_note_pos_x[i], -40, -60))
-					{
-						is_judge[i] = true;//判定用のフラグをtrueにする
-						break;
-					}
-				}
-			}
-			if ( pad.isPushButton(0))
-			{
-				hit_se.play();
-				hit_se.gain(2);
-				for (int i = 0; i < NOTE_MAX; ++i)
-				{ // 範囲内かつ、判定用フラグがfalseなら
-					if (!is_judge[i] && Is_Inside(get_note_pos_y[i], ICON_CHECKLINE_MAX, ICON_CHECKLINE_MIN)
-						             && Is_Inside(get_note_pos_x[i], 60, 40))
-					{
-						is_judge[i] = true;//判定用のフラグをtrueにする
-						break;
-					}
-				}
-			}
-			if ( pad.isPushButton(3))
-			{
-				hit_se.play();
-				hit_se.gain(2);
-				for (int i = 0; i < NOTE_MAX; ++i)
-				{ // 範囲内かつ、判定用フラグがfalseなら
-					if (!is_judge[i] && Is_Inside(get_note_pos_y[i], ICON_CHECKLINE_MAX, ICON_CHECKLINE_MIN)
-						             && Is_Inside(get_note_pos_x[i], 160, 140))
-					{
-						is_judge[i] = true;//判定用のフラグをtrueにする
-						break;
-					}
-				}
-			}
-			if ( pad.isPushButton(2))
-			{
-				hit_se.play();
-				hit_se.gain(2);
-				for (int i = 0; i < NOTE_MAX; ++i)
-				{ // 範囲内かつ、判定用フラグがfalseなら
-					if (!is_judge[i] && Is_Inside(get_note_pos_y[i], ICON_CHECKLINE_MAX, ICON_CHECKLINE_MIN)
-						             && Is_Inside(get_note_pos_x[i], 260, 240))
-					{
-						is_judge[i] = true;//判定用のフラグをtrueにする
-						break;
-					}
-				}
-			}
+		  
 	}
 
 
@@ -230,14 +127,14 @@ int main() {
 		{
 
 			Note[i].Is_dead();
-			judge[i].Judgging(get_note_pos_y[i]);
+			judge[i].Judgging(Note[i].Get_note_pos_y());
 			judge[i].Draw();
 			now_combo = judge[i].Get_Combo(now_combo);
 		    now_score = judge[i].Get_Score(now_score);
 		
 		}
 		//ミスしたまま指定した範囲をすぎたら、コンボを０にする。
-		if (is_judge[i] == false && get_note_pos_y[i] < ICON_DEADLINE)
+		if (is_judge[i] == false && Note[i].Get_note_pos_y() < ICON_DEADLINE)
 		{
 
 			now_combo = judge[i].Reset_Combo();
@@ -245,10 +142,27 @@ int main() {
 		}
 
 	}
-
-
-
     
     CApp::get().end();
   }
+}
+
+void Judge_by_joypad(int _button_num, float _x )
+{
+
+	if (!Cjudge::pad.isPushButton(_button_num)) return;
+
+
+	for (int i = 0; i < NOTE_MAX; ++i)
+	{ // 範囲内かつ、判定用フラグがfalseなら
+		//if (!is_judge[i] && Is_Inside(Note[i].Get_note_pos_y(), ICON_CHECKLINE_MAX, ICON_CHECKLINE_MIN)
+			//&& Cjudge::Get_distance(_x, Note[i].Get_note_pos_x()) <= PLAYER_WIDTH / 2)
+		{
+			//is_judge[i] = true;//判定用のフラグをtrueにする
+			break;
+		}
+	}
+
+
+
 }
