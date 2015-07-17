@@ -2,12 +2,26 @@
 #include "lib/framework.hpp"
 #include "Inside.h"
 #define PARTITION_FUNCTION_OF_CIRCLE  (30)
-#define EXCELENT_DISTANCE_MAX (-185)
+#define EXCELENT_DISTANCE_MAX (-185)  
 #define EXCELENT_DISTANCE_MIN (-215)
 #define GOOD_DISTANCE_NUM1_MAX (-165)
 #define GOOD_DISTANCE_NUM1_MIN (-185)
 #define GOOD_DISTANCE_NUM2_MAX (-215)
 #define GOOD_DISTANCE_NUM2_MIN (-235)
+#define EXCELENT_RANGE (15)
+#define GOOD_RANGE (20)
+#define PLAYER_Y (-200)
+enum JUDGEMENT_TYPE  // ジャスト判定
+{
+	NONE = -1,
+	BAD,
+	GOOD,
+	EXCELENT,
+	GUARD
+};
+
+
+
 
 
 
@@ -22,7 +36,7 @@ public:
 		combo(0),
 		combo_plus(1),
 		combo_reset(0),
-		judge_num(0),
+		judge_num(JUDGEMENT_TYPE::NONE),
 		draw_time(0),
 		combo_cut_pos_y(0),
 		plus_score_point(10),
@@ -33,28 +47,35 @@ public:
 
 	};
 
-
+	void Update();
 	void Draw();  //判定してから描画
-	void Check_draw_judge(float _icon_pos_y);  //Insideがtrueのときさらに判定
+	JUDGEMENT_TYPE Judgging(float _icon_pos_y);  //Insideがtrueのときさらに判定
 	int Get_Score(int _score);  // score判定
 	int Get_Combo(int _combo);  // コンボ判定
-
 	int Reset_Combo();  // missしたときにcomboを０にする
+	static float Get_distance(float _obj_a_y, float _obj_b_y);// ２点間の絶対値を返す。
+
+
+	void Set_draw_active(bool _is_active) 
+	{
+
+		is_draw_active = _is_active;
+
+	}
+
 
 private:
-	enum JUDGEMENT_TYPE  // ジャスト判定
-	{
-		BAD,
-		GOOD,
-		EXCELENT
-	};
+
+
+	
+
 	Vec2f draw_pos;
 	Vec2f draw_size;
 	int draw_flame_count;
 	int combo;
 	int combo_plus;
 	int draw_time;
-	int judge_num;
+	JUDGEMENT_TYPE judge_num;
 	int combo_cut_pos_y;
 	int plus_score_point;
 	int combo_reset;

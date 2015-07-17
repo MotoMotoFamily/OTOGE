@@ -32,13 +32,6 @@ int main() {
 	
 	int now_score = 0;
 	int now_combo = 0;
-	
-	bool is_hit[NOTE_MAX];
-
-	for (int i = 0; i < NOTE_MAX; ++i)
-	{
-		is_hit[i] = true;
-	}
 
 	float note_x[] =
 	{
@@ -123,9 +116,9 @@ int main() {
 
 		for (int i = 0; i < NOTE_MAX; ++i)
 		{ // 範囲内かつ、判定用フラグがfalseなら
-			if (!is_judge[i] && Is_Inside(get_note_pos_y[i], ICON_CHECKLINE_MAX, ICON_CHECKLINE_MIN))
+			if (!is_judge[i] && judge[i].Judgging(get_note_pos_y[i]) != JUDGEMENT_TYPE::NONE) 
 			{
-
+				judge[i].Set_draw_active(true);
 				is_judge[i] = true;//判定用のフラグをtrueにする
 				break;
 			}
@@ -237,7 +230,7 @@ int main() {
 		{
 
 			Note[i].Is_dead();
-			judge[i].Check_draw_judge(get_note_pos_y[i]);
+			judge[i].Judgging(get_note_pos_y[i]);
 			judge[i].Draw();
 			now_combo = judge[i].Get_Combo(now_combo);
 		    now_score = judge[i].Get_Score(now_score);
