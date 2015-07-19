@@ -14,7 +14,7 @@ public:
 		void Draw();
 		bool Is_active();
 
-		void Is_dead();
+		void Kill();
 
 		void Move(float _speed);
 

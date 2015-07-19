@@ -20,7 +20,7 @@
 		return note.is_active;
 	}
 
-	void Cnote::Is_dead()// hit後の描画処理終了用
+	void Cnote::Kill()// hit後の描画処理終了用
 	{
 		note.is_active = false;
 	}
