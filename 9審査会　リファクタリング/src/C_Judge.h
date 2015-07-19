@@ -45,13 +45,16 @@ public:
 		plus_score_point(10),
 		is_plus_score(false),
 		is_combo(false),
-		is_draw_active(false)
+		is_draw_active(false),
+		is_active(true)
 	{
 
 
 
 	};
 
+	bool Get_is_active(){ return is_active; }
+	void Set_is_active(bool _is_active){ is_active = _is_active; }
 	void Update();
 	void Draw();  //”»’è‚µ‚Ä‚©‚ç•`‰æ
 	JUDGEMENT_TYPE Judgging(float _icon_pos_y);  //Inside‚ªtrue‚Ì‚Æ‚«‚³‚ç‚É”»’è
@@ -72,7 +75,6 @@ public:
 	static const GamePad& pad;
 
 private:
-
 	Vec2f draw_pos;
 	Vec2f draw_size;
 	int draw_flame_count;
@@ -83,6 +85,7 @@ private:
 	int combo_cut_pos_y;
 	int plus_score_point;
 	int combo_reset;
+	bool is_active;
 	bool is_plus_score;
 	bool is_combo;
 	bool is_draw_active;
