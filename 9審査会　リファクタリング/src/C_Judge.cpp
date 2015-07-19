@@ -4,21 +4,13 @@
 const GamePad& Cjudge::pad = CApp::get().gamePad(0);
 
 
-void Cjudge::Update()
-{
-	
-
-
-
-
-}
 
 
 
 
 void Cjudge::Draw()  //判定してから書く
 {
-	if (is_draw_active == true && draw_time < draw_flame_count)
+    if (is_draw_active == true && draw_time < draw_flame_count)
 	{
 		++draw_time;
 		if (judge_num == JUDGEMENT_TYPE::EXCELENT)
@@ -28,7 +20,7 @@ void Cjudge::Draw()  //判定してから書く
 		if (judge_num == JUDGEMENT_TYPE::BAD)
 			drawFillBox(draw_pos.x(), draw_pos.y(), draw_size.x(), draw_size.y(), Color::yellow);
 	}
-
+	
 }
 
 JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Insideがtrueのときさらに判定
@@ -39,7 +31,7 @@ JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Insideがtrueのときさらに判
 		JUDGEMENT_TYPE type;
 
 	};
-#define OUT_RANGE (50)
+
 	const RESULT_TABLE table[] = {
 		{ OUT_RANGE , JUDGEMENT_TYPE::BAD   },
 		{ GOOD_RANGE , JUDGEMENT_TYPE::GOOD     },
@@ -47,7 +39,7 @@ JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Insideがtrueのときさらに判
 
 	};
 
-	auto distance = Get_distance(PLAYER_Y,_note_pos_y);
+	auto distance = Get_distance(-200,_note_pos_y);
 
 	if (distance > OUT_RANGE)
 	{
@@ -55,7 +47,7 @@ JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Insideがtrueのときさらに判
 	}
 
 
-	for (int i = 0; i < GUARD; ++i)
+	for (int i = 0; i < JUDGEMENT_TYPE::GUARD; ++i)
 	{
 		if (distance < table[i].distance)
 		{
@@ -66,9 +58,9 @@ JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Insideがtrueのときさらに判
 			break;
 		}
 	}
-
+	
 	return judge_num;
-
+	
 }
 
 
@@ -79,6 +71,7 @@ int Cjudge::Get_Score(int _score)  // score判定
 		_score = _score + (combo * plus_score_point + plus_score_point);
 		is_plus_score = true;
 	}
+	
 	return _score;
 }
 int Cjudge::Get_Combo(int _combo)  // コンボ判定
@@ -88,6 +81,7 @@ int Cjudge::Get_Combo(int _combo)  // コンボ判定
 		combo = _combo + combo_plus;
 		is_combo = true;
 	}
+	
 	return combo;
 }
 

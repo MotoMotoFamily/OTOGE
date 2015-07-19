@@ -6,8 +6,6 @@
 #define IS_FULL_SCREEN false
 #define IS_DYNAMMIC_SCREEN true
 
-
-class AppEnv;
 class CApp
 {
 public:
