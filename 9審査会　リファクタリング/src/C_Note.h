@@ -1,6 +1,8 @@
 #pragma once
 #include "lib/framework.hpp"
 
+//ノートを描画し始める範囲 (のちの処理落ち対策用)
+# define NOTE_DRAW_START_LINE  (400) 
 class Cnote  // ノート生成
 {
 public:

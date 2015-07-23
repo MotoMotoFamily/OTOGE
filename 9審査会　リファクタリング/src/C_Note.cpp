@@ -13,7 +13,12 @@
 	void Cnote::Draw()// ï`âÊèàóù
 	{
 		if (note.is_active)
-			drawFillCircle(note.pos_x, note.pos_y, note.size.x(), note.size.y(), 30, Color::red);
+		{ 
+			if (note.pos_x < NOTE_DRAW_START_LINE)
+			{
+				drawFillCircle(note.pos_x, note.pos_y, note.size.x(), note.size.y(), 30, Color::red);
+			}
+		}
 	}
 	bool Cnote::Is_active()//É~ÉXîªíËóp
 	{
