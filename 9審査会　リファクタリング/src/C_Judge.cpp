@@ -1,5 +1,5 @@
 #include "C_Judge.h"
-#include "C_App.h"
+
 
 const GamePad& Cjudge::pad = CApp::get().gamePad(0);
 
@@ -39,7 +39,7 @@ JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Inside‚ªtrue‚Ì‚Æ‚«‚³‚ç‚É”»
 
 	};
 
-	auto distance = Get_distance(-200,_note_pos_y);
+	auto distance = Get_distance(PLAYER_Y,_note_pos_y);
 
 	if (distance > OUT_RANGE)
 	{
@@ -52,6 +52,7 @@ JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Inside‚ªtrue‚Ì‚Æ‚«‚³‚ç‚É”»
 		if (distance < table[i].distance)
 		{
 			judge_num = table[i].type;
+			is_draw_active = true;
 		}
 		else 
 		{
