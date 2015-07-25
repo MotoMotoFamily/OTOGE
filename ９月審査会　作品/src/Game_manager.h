@@ -2,6 +2,7 @@
 
 #include "lib/framework.hpp"
 #include "C_Note.h"
+#include "C_Longnote.h"
 #include "C_Judge.h"
 #include "Inside.h"
 #include "C_Deltatime.h"
@@ -10,7 +11,7 @@
 #define NOTE_MAX  (256)
 #define NOTE_CHECKLINE_MAX (-150)
 #define NOTE_CHECKLINE_MIN (-250)
-#define NOTE_DEADLINE (-300)
+#define NOTE_DEADLINE (-230)
 #define PLAYER_Y (-200)
 
 class Game_manager
@@ -53,6 +54,8 @@ private:
 	Cplayer player;
 	Cnote note[NOTE_MAX];
 	Cjudge judge[NOTE_MAX];
+	Clongnote longnote;
+	Cjudge longjudge;
 
 	Deltatime deltatime;	//デルタタイムをもらう
 	float deltaTime_content;
@@ -61,7 +64,6 @@ private:
 		float y;
 	};
 
-	//外部ファイルからの読み込み用
 	struct File_read
 	{
 		float pos_x;
@@ -73,7 +75,7 @@ private:
 
 	int now_score;
 	int now_combo;
-
+	
 	Vec2f note_size = Vec2f(15.5f, 6.25f);
 	
 	

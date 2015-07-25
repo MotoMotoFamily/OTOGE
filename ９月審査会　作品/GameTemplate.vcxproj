@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="src\C_App.h" />
     <ClInclude Include="src\C_Judge.h" />
+    <ClInclude Include="src\C_Longnote.h" />
     <ClInclude Include="src\C_Note.h" />
     <ClInclude Include="src\C_Deltatime.h" />
     <ClInclude Include="src\C_Player.h" />
@@ -47,7 +48,8 @@
     <ClCompile Include="src\C_App.cpp" />
     <ClCompile Include="src\C_Deltatime.cpp" />
     <ClCompile Include="src\C_Judge.cpp" />
-    <ClCompile Include="src\C_player.cpp" />
+    <ClCompile Include="src\C_Longnote.cpp" />
+    <ClCompile Include="src\C_Player.cpp" />
     <ClCompile Include="src\Game_manager.cpp" />
     <ClCompile Include="src\lib\appEnv.cpp" />
     <ClCompile Include="src\lib\audio.cpp" />

@@ -20,7 +20,14 @@ void Cjudge::Draw()  //”»’è‚µ‚Ä‚©‚ç‘‚­
 		if (judge_num == JUDGEMENT_TYPE::BAD)
 			drawFillBox(draw_pos.x(), draw_pos.y(), draw_size.x(), draw_size.y(), Color::yellow);
 	}
-	
+	if (draw_time >= draw_flame_count)
+	{
+		is_draw_active = false;
+		is_combo = false;
+		is_plus_score = false;
+		
+
+	}
 }
 
 JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Inside‚ªtrue‚Ì‚Æ‚«‚³‚ç‚É”»’è
@@ -81,6 +88,7 @@ int Cjudge::Get_Combo(int _combo)  // ƒRƒ“ƒ{”»’è
 	{
 		combo = _combo + combo_plus;
 		is_combo = true;
+		
 	}
 	
 	return combo;

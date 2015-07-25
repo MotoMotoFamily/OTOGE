@@ -11,13 +11,13 @@
 class Cplayer
 {
 public:
-	Cplayer() :
-		player_size(30, 7.5f)
+	Cplayer():
+		player_size(30,7.5f)
 	{
 
 
 	}
-
+	
 	//•`‰æˆ—
 	void Draw();
 	//‰Šú‰»ˆ—

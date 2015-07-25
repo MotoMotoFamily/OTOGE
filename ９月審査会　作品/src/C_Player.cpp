@@ -3,7 +3,7 @@
 void Cplayer::Draw()
 {
 	int player_pos_x[PLAYER_ICON_NUMBER] = { -250, -150, -50, 50, 150, 250 };
-
+	
 	for (int i = 0; i < PLAYER_ICON_NUMBER; ++i)
 	{
 		//PLAYERのICON位置
@@ -13,9 +13,10 @@ void Cplayer::Draw()
 }
 
 
-// あとでステータスなどの変化要素をくわえます。
+
 void Cplayer::Update()
 {
+
 
 
 
