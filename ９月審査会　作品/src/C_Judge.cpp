@@ -71,12 +71,14 @@ JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Insideがtrueのときさらに判
 	
 }
 
+//課題
+//Judgeの判定ごとにスコア上昇率を変える。
 
-int Cjudge::Get_Score(int _score)  // score判定
+int Cjudge::Get_Score(int _score , JUDGEMENT_TYPE _judge)  // score判定
 {
 	if (is_plus_score == false)
 	{
-		_score = _score + (combo * plus_score_point + plus_score_point);
+		_score = _score + (combo * plus_score_point + plus_score_point + combo * _judge * plus_score_point / 2);
 		is_plus_score = true;
 	}
 	

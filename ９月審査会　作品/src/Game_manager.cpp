@@ -1,5 +1,6 @@
 #include"Game_manager.h"
 Media hit_se("res/dan.wav");
+Texture gameover("res/Gameover.png");
 
 void Game_manager::Note_initialize()
 {
@@ -54,7 +55,7 @@ void Game_manager::Note_initialize()
 		}
 		else
 		{
-			note[i].Init(-100000, -100000, Vec2f(0.0f, 0.0f));
+			note[i].Kill();
 		}
 	}
 	longnote.Init(50, 200, 50, 300, note_size);
@@ -63,13 +64,28 @@ void Game_manager::Note_initialize()
 
 void Game_manager::Update()
 {
-	float time = deltatime.Get();
-	for (int i = 0; i < NOTE_MAX; ++i)
+	Game_manager::Add_judge_effect();
+	Game_manager::Input_Joypad();
+
+
+    ///ただの確認用
+	if (!player.Is_player_active())
 	{
-		note[i].Move(time * deltaTime_content);
-		
+		drawTextureBox(-375, -250, 750, 500, 0, 0, 1024, 512, gameover, Color::white);
 	}
-	longnote.Move(time * deltaTime_content);
+	//playerが生きているならノートに移動処理を加える。
+	if ( player.Is_player_active() )
+	{
+
+		float time = deltatime.Get();
+
+		for (int i = 0; i < NOTE_MAX; ++i)
+		{
+			note[i].Move(time * deltaTime_content);
+
+		}
+		longnote.Move(time * deltaTime_content);
+	}
 }
 
 void Game_manager::Draw()
@@ -114,6 +130,7 @@ void Game_manager::Judge_by_joypad(int _button_num, float _x)
 				judge[i].Set_is_active(false);
 				note[i].Kill();
 				judge[i].Set_draw_active(true);
+				player.Recovery_player_hp();
 				break;
 			}
 
@@ -152,6 +169,15 @@ void Game_manager::Judge_by_joypad(int _button_num, float _x)
 
 }
 
+void Game_manager::Input_Joypad()
+{
+	Game_manager::Judge_by_joypad(B_BUTTON, 250);
+	Game_manager::Judge_by_joypad(Y_BUTTON, 150);
+	Game_manager::Judge_by_joypad(X_BUTTON, 50);
+	Game_manager::Judge_by_joypad(D_RIGHT, -50);
+	Game_manager::Judge_by_joypad(D_UP, -150);
+	Game_manager::Judge_by_joypad(D_LEFT, -250);
+}
 
 void Game_manager::Add_judge_effect()
 {
@@ -162,7 +188,7 @@ void Game_manager::Add_judge_effect()
 		{
 			judge[i].Judgging(note[i].Get_note_pos_y());
 			now_combo = judge[i].Get_Combo(now_combo);
-			now_score = judge[i].Get_Score(now_score);
+			now_score = judge[i].Get_Score(now_score , judge[i].Judgging(note[i].Get_note_pos_y()));
 			Game_manager::judge[i].Set_is_active(true);
 		}
 		judge[i].Draw();
@@ -177,7 +203,7 @@ void Game_manager::Add_judge_effect()
 	{
 		longjudge.Judgging(longnote.Get_note_end_pos_y());
 		now_combo = longjudge.Get_Combo(now_combo);
-		now_score = longjudge.Get_Score(now_score);
+		now_score = longjudge.Get_Score(now_score,longjudge.Judgging(longnote.Get_note_end_pos_y()));
 		Game_manager::longjudge.Set_is_active(true);
 		longnote.Set_is_pull_active(false);
 		
@@ -195,6 +221,7 @@ void Game_manager::Judge_of_deadline()
 		{
 			note[i].Kill();
 			now_combo = judge[i].Reset_Combo();
+			player.Divide_player_hp();
 			
 		}
 

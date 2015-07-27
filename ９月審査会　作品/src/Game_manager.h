@@ -14,6 +14,14 @@
 #define NOTE_DEADLINE (-230)
 #define PLAYER_Y (-200)
 
+#define B_BUTTON (2)
+#define Y_BUTTON (3)
+#define X_BUTTON (0)
+#define D_RIGHT (13)
+#define D_UP (12)
+#define D_LEFT (15)
+
+
 class Game_manager
 {
 public:
@@ -39,6 +47,8 @@ public:
 	//ポジションにより判断する。
 	void Judge_by_joypad(int _button_num, float _x );
 
+	//パッドボタンを集めたもの
+	void Input_Joypad();
 
 	//判定用フラグが入っているなら判定処理
 	//下の処理をクラス内にいれるかどうか。

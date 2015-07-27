@@ -49,10 +49,8 @@ public:
 private:
 	struct LONGNOTE        //　ノートアイコン情報 
 	{
-		float start_pos_x;
-		float start_pos_y;
-		float end_pos_x;
-		float end_pos_y;
+		Vec2f start_pos;
+		Vec2f end_pos;
 		Vec2f size;
 		bool is_active;
 		bool is_push;
