@@ -20,7 +20,14 @@ void Cjudge::Draw()  //判定してから書く
 		if (judge_num == JUDGEMENT_TYPE::BAD)
 			drawFillBox(draw_pos.x(), draw_pos.y(), draw_size.x(), draw_size.y(), Color::yellow);
 	}
-	
+	if (draw_time >= draw_flame_count)
+	{
+		is_draw_active = false;
+		is_combo = false;
+		is_plus_score = false;
+		
+
+	}
 }
 
 JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Insideがtrueのときさらに判定
@@ -64,12 +71,14 @@ JUDGEMENT_TYPE Cjudge::Judgging(float _note_pos_y)  //Insideがtrueのときさらに判
 	
 }
 
+//課題
+//Judgeの判定ごとにスコア上昇率を変える。
 
-int Cjudge::Get_Score(int _score)  // score判定
+int Cjudge::Get_Score(int _score , JUDGEMENT_TYPE _judge)  // score判定
 {
 	if (is_plus_score == false)
 	{
-		_score = _score + (combo * plus_score_point + plus_score_point);
+		_score = _score + (combo * plus_score_point + plus_score_point + combo * _judge * plus_score_point / 2);
 		is_plus_score = true;
 	}
 	
@@ -81,6 +90,7 @@ int Cjudge::Get_Combo(int _combo)  // コンボ判定
 	{
 		combo = _combo + combo_plus;
 		is_combo = true;
+		
 	}
 	
 	return combo;

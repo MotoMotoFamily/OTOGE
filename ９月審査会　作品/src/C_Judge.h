@@ -61,7 +61,7 @@ public:
 	void Set_draw_active(bool _draw_active){ is_draw_active = _draw_active; }
 	void Draw();  //判定してから描画
 	JUDGEMENT_TYPE Judgging(float _icon_pos_y);  //Insideがtrueのときさらに判定
-	int Get_Score(int _score);  // score判定
+	int Get_Score(int _score , JUDGEMENT_TYPE _judge);  // score判定
 	int Get_Combo(int _combo);  // コンボ判定
 	int Reset_Combo();  // missしたときにcomboを０にする
 	static float Get_distance(float _obj_a_y, float _obj_b_y);// ２点間の絶対値を返す。

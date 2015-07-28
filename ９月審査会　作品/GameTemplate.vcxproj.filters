@@ -26,7 +26,10 @@
       <UniqueIdentifier>{d84c552e-e353-4ac1-9a5c-fb5477d79558}</UniqueIdentifier>
     </Filter>
     <Filter Include="C_Player">
-      <UniqueIdentifier>{5824e2e1-1831-4ac3-b497-6ec759ba327a}</UniqueIdentifier>
+      <UniqueIdentifier>{9570b7b8-5c25-464c-be0a-e4c8779ab608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C_Longnote">
+      <UniqueIdentifier>{51ec1c35-07bc-4846-b5cc-f2a5bc2532f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +126,9 @@
     <ClInclude Include="src\C_Player.h">
       <Filter>C_Player</Filter>
     </ClInclude>
+    <ClInclude Include="src\C_Longnote.h">
+      <Filter>C_Longnote</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\lib\appEnv.cpp">
@@ -204,8 +210,11 @@
     <ClCompile Include="src\Game_manager.cpp">
       <Filter>Game_manager</Filter>
     </ClCompile>
-    <ClCompile Include="src\C_player.cpp">
+    <ClCompile Include="src\C_Player.cpp">
       <Filter>C_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\C_Longnote.cpp">
+      <Filter>C_Longnote</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

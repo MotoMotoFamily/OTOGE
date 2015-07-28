@@ -2,6 +2,7 @@
 
 #include "lib/framework.hpp"
 #include "C_Note.h"
+#include "C_Longnote.h"
 #include "C_Judge.h"
 #include "Inside.h"
 #include "C_Deltatime.h"
@@ -10,8 +11,16 @@
 #define NOTE_MAX  (256)
 #define NOTE_CHECKLINE_MAX (-150)
 #define NOTE_CHECKLINE_MIN (-250)
-#define NOTE_DEADLINE (-300)
+#define NOTE_DEADLINE (-230)
 #define PLAYER_Y (-200)
+
+#define B_BUTTON (2)
+#define Y_BUTTON (3)
+#define X_BUTTON (0)
+#define D_RIGHT (13)
+#define D_UP (12)
+#define D_LEFT (15)
+
 
 class Game_manager
 {
@@ -38,6 +47,8 @@ public:
 	//ポジションにより判断する。
 	void Judge_by_joypad(int _button_num, float _x );
 
+	//パッドボタンを集めたもの
+	void Input_Joypad();
 
 	//判定用フラグが入っているなら判定処理
 	//下の処理をクラス内にいれるかどうか。
@@ -53,6 +64,8 @@ private:
 	Cplayer player;
 	Cnote note[NOTE_MAX];
 	Cjudge judge[NOTE_MAX];
+	Clongnote longnote;
+	Cjudge longjudge;
 
 	Deltatime deltatime;	//デルタタイムをもらう
 	float deltaTime_content;
@@ -61,7 +74,6 @@ private:
 		float y;
 	};
 
-	//外部ファイルからの読み込み用
 	struct File_read
 	{
 		float pos_x;
@@ -73,7 +85,7 @@ private:
 
 	int now_score;
 	int now_combo;
-
+	
 	Vec2f note_size = Vec2f(15.5f, 6.25f);
 	
 	
