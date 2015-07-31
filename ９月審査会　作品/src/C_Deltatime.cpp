@@ -8,3 +8,4 @@ float Deltatime::Get()
 
 	return deltaTime ;
 }
+

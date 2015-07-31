@@ -35,9 +35,14 @@ void Cplayer::Draw_player_hp()
 
 void Cplayer::Divide_player_hp()
 {
-	if (player_hp < DIVIDE_HP)return;
+	if (player_hp < 0)return;
 
 	player_hp -= DIVIDE_HP;
+
+	if (player_hp < 0)
+	{
+		player_hp = 0;
+	}
 
 }
 
@@ -53,5 +58,5 @@ bool Cplayer::Is_player_active()
 {
 	if (player_hp > 0)return true;
     
-	return false;
+	//return false;
 }

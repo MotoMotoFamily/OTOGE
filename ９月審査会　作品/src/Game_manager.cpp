@@ -2,13 +2,16 @@
 Media hit_se("res/dan.wav");
 Texture gameover("res/Gameover.png");
 
-void Game_manager::Note_initialize()
+void Game_manager::Note_initialize(MUSIC_INFO _info)
 {
-	note_position note_pos[NOTE_MAX];
-
-	File_read read[NOTE_MAX];
 	
-		std::fstream file("res/sio_song.txt");
+		music = Media(_info.music_wav);
+		music.play();
+
+		note_position note_pos[NOTE_MAX];
+		File_read read[NOTE_MAX];
+
+		std::fstream file(_info.note_txt);
 
 		int NoteNumber = 0;
 
@@ -47,18 +50,19 @@ void Game_manager::Note_initialize()
 
 		}
 
-	for (int i = 0; i < NOTE_MAX; ++i)
-	{
-		if (i < NoteNumber)
+		for (int i = 0; i < NOTE_MAX; ++i)
 		{
-			note[i].Init(note_pos[i].x, note_pos[i].y, note_size);
+			if (i < NoteNumber)
+			{
+				note[i].Init(note_pos[i].x, note_pos[i].y, note_size);
+			}
+			else
+			{
+				note[i].Kill();
+			}
 		}
-		else
-		{
-			note[i].Kill();
-		}
-	}
-	longnote.Init(50, 200, 50, 300, note_size);
+		longnote.Init(50, 200, 50, 300, note_size);
+	
 }
 
 
@@ -74,18 +78,20 @@ void Game_manager::Update()
 		drawTextureBox(-375, -250, 750, 500, 0, 0, 1024, 512, gameover, Color::white);
 	}
 	//player‚ª¶‚«‚Ä‚¢‚é‚È‚çƒm[ƒg‚ÉˆÚ“®ˆ—‚ð‰Á‚¦‚éB
-	if ( player.Is_player_active() )
+	if (player.Is_player_active())
 	{
 
 		float time = deltatime.Get();
 
-		for (int i = 0; i < NOTE_MAX; ++i)
-		{
-			note[i].Move(time * deltaTime_content);
+			for (int i = 0; i < NOTE_MAX; ++i)
+			{
+				note[i].Move(time * deltaTime_content);
 
-		}
-		longnote.Move(time * deltaTime_content);
+			}
+			longnote.Move(time * deltaTime_content);
+		
 	}
+
 }
 
 void Game_manager::Draw()

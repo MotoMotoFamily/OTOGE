@@ -43,6 +43,9 @@
     <ClInclude Include="src\lib\utils.hpp" />
     <ClInclude Include="src\lib\vector.hpp" />
     <ClInclude Include="src\lib\wav.hpp" />
+    <ClInclude Include="src\Music_infomation.h" />
+    <ClInclude Include="src\Scene_manager.h" />
+    <ClInclude Include="src\Select_music.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\C_App.cpp" />
@@ -74,6 +77,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\C_Note.cpp" />
     <ClCompile Include="src\Inside.cpp" />
+    <ClCompile Include="src\Select_music.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9EFD6A36-08E8-485E-B135-5B6519C0F6B1}</ProjectGuid>
