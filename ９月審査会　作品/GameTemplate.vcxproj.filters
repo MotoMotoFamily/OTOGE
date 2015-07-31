@@ -31,6 +31,12 @@
     <Filter Include="C_Longnote">
       <UniqueIdentifier>{51ec1c35-07bc-4846-b5cc-f2a5bc2532f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene_manager">
+      <UniqueIdentifier>{45d350fd-116f-4b0d-bee7-397021c0930d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Select_music">
+      <UniqueIdentifier>{499713c9-da4e-4e12-a484-fcc6e53bd4eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\appEnv.hpp">
@@ -129,6 +135,15 @@
     <ClInclude Include="src\C_Longnote.h">
       <Filter>C_Longnote</Filter>
     </ClInclude>
+    <ClInclude Include="src\Select_music.h">
+      <Filter>Select_music</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Music_infomation.h">
+      <Filter>Select_music</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene_manager.h">
+      <Filter>Scene_manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\lib\appEnv.cpp">
@@ -215,6 +230,9 @@
     </ClCompile>
     <ClCompile Include="src\C_Longnote.cpp">
       <Filter>C_Longnote</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Select_music.cpp">
+      <Filter>Select_music</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@
 #include "Inside.h"
 #include "C_Deltatime.h"
 #include "C_Player.h"
+#include "Music_infomation.h"
 
 #define NOTE_MAX  (256)
 #define NOTE_CHECKLINE_MAX (-150)
@@ -22,20 +23,18 @@
 #define D_LEFT (15)
 
 
-class Game_manager
+class Game_manager 
 {
 public:
 	Game_manager() :
 		now_score(0),
 		now_combo(0)
 	{
-		
-		Note_initialize();
 		deltaTime_content = 0.15f;
 	}
 
 	//ノートなどの初期化
-	void Note_initialize();
+	void Note_initialize(MUSIC_INFO _info);
 
 	//update用関数
 	void Update();
@@ -60,13 +59,15 @@ public:
 	void Judge_of_deadline();
 
 
+	
+
 private:
 	Cplayer player;
 	Cnote note[NOTE_MAX];
 	Cjudge judge[NOTE_MAX];
 	Clongnote longnote;
 	Cjudge longjudge;
-
+	Media music;
 	Deltatime deltatime;	//デルタタイムをもらう
 	float deltaTime_content;
 	struct note_position{
@@ -87,7 +88,7 @@ private:
 	int now_combo;
 	
 	Vec2f note_size = Vec2f(15.5f, 6.25f);
-	
+
 	
 
 };
